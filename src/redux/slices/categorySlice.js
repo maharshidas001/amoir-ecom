@@ -9,12 +9,12 @@ const initialState = {
 
 // getAllCategories
 const getAllCategories = createAsyncThunk('categories/getAllCategories', async () => {
-  const response = await axios.get('https://api.escuelajs.co/api/v1/categories');
+  const response = await axios.get('https://fakestoreapi.in/api/products/category');
   return response.data;
 });
-// getSingleCategory
-const getSingleCategory = createAsyncThunk('categories/getSingleCategory', async (id) => {
-  const respone = await axios.get(`https://api.escuelajs.co/api/v1/categories/${id}`);
+// getSingleCategoryItem
+const getSingleCategoryItem = createAsyncThunk('categories/getSingleCategoryItem', async (name) => {
+  const respone = await axios.get(`https://fakestoreapi.in/api/products/category?type=${name}`);
   return respone.data;
 });
 
@@ -34,19 +34,19 @@ const categorySlice = createSlice({
       state.loading = false;
     });
 
-    // getSingleCategory
-    builder.addCase(getSingleCategory.pending, (state) => {
+    // getSingleCategoryItem
+    builder.addCase(getSingleCategoryItem.pending, (state) => {
       state.loading = true;
       state.error = null;
-    }).addCase(getSingleCategory.fulfilled, (state, action) => {
+    }).addCase(getSingleCategoryItem.fulfilled, (state, action) => {
       state.categories = action.payload;
       state.loading = false;
-    }).addCase(getSingleCategory.rejected, (state, action) => {
+    }).addCase(getSingleCategoryItem.rejected, (state, action) => {
       state.error = action.error.message;
       state.loading = false;
     });
   }
 });
 
-export { getAllCategories, getSingleCategory };
+export { getAllCategories, getSingleCategoryItem };
 export default categorySlice.reducer;

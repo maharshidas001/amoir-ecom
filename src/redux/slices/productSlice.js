@@ -9,12 +9,12 @@ const initialState = {
 
 // getAllProducts
 const getAllProducts = createAsyncThunk('products/getAllProducts', async () => {
-  const response = await axios.get('https://api.escuelajs.co/api/v1/products');
+  const response = await axios.get('https://fakestoreapi.in/api/products');
   return response.data;
 });
 // getSingleProduct
 const getSingleProduct = createAsyncThunk('products/getSingleProduct', async (id) => {
-  const response = await axios.get(`https://api.escuelajs.co/api/v1/products/${id}`);
+  const response = await axios.get(`https://fakestoreapi.in/api/products/${id}`);
   return response.data;
 });
 
