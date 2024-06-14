@@ -1,11 +1,8 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-
-// Pages
 import { Home, Cart } from './pages';
-
-// Components
 import { Header, Footer } from './components';
+import { Toaster } from 'react-hot-toast';
 
 const App = () => {
   return (
@@ -16,6 +13,9 @@ const App = () => {
           minHeight: 'calc(100vh - 96px)'
         }}
       >
+        <Toaster
+          toastOptions={{ duration: 1500 }}
+        />
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/cart' element={<Cart />} />
