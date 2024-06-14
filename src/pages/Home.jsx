@@ -18,8 +18,14 @@ const Home = () => {
       <div className='w-full flex items-center justify-center'>
         <div className='w-full max-w-[1200px]'>
           <GridLayout>
-            {(!loading && products.length !== 0) && products.map(prod => (
-              <Card key={prod.id} id={prod.id} title={prod.title} price={prod.price} />
+            {(!loading && products.length !== 0) && products && products.map(prod => (
+              <Card
+                key={prod.id}
+                id={prod.id}
+                title={prod.title}
+                price={prod.price}
+                img={prod.image}
+              />
             ))}
           </GridLayout>
           {loading && <Loading />}

@@ -5,7 +5,7 @@ import { addToCart } from '../../redux/slices/cartSlice';
 const Card = ({
   title = '',
   price = 0,
-  img = '',
+  img,
   id
 }) => {
 
@@ -14,12 +14,16 @@ const Card = ({
   return (
     <>
       <div className='min-w-[230px] p-3 rounded-md shadow hover:shadow-2xl transition'>
-        <div className='rounded bg-green-400 w-full h-[140px]'></div>
-        <h3 className='mt-2'>{!title ? 'Title' : title}</h3>
+        <div className='rounded w-full h-[140px] flex justify-center'>
+          <img src={img} alt={title}
+            className='max-h-full'
+          />
+        </div>
+        <h3 className='mt-2 text-[0.9rem] text-ellipsis whitespace-nowrap overflow-hidden'>{!title ? 'Title' : title}</h3>
         <div className='flex items-center justify-between'>
-          <p className='text-lg font-medium'>{price}</p>
+          <p className='text-lg font-medium'>${price}</p>
           <button
-            className='px-2 py-1 rounded bg-black text-white'
+            className='px-2 py-1 rounded bg-black text-white text-[0.9rem]'
             onClick={() => {
               dispatch(addToCart({ id, title, price, img, quantity: 1 }));
               console.log('Added....');

@@ -10,7 +10,7 @@ const initialState = {
 // getAllProducts
 const getAllProducts = createAsyncThunk('products/getAllProducts', async () => {
   const response = await axios.get('https://fakestoreapi.in/api/products');
-  return response.data;
+  return response.data.products;
 });
 // getSingleProduct
 const getSingleProduct = createAsyncThunk('products/getSingleProduct', async (id) => {
