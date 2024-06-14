@@ -19,10 +19,9 @@ const Home = () => {
         <div className='w-full max-w-[1200px]'>
           <GridLayout>
             {(!loading && products.length !== 0) && products.map(prod => (
-              <Card key={prod.id} />
+              <Card key={prod.id} id={prod.id} title={prod.title} price={prod.price} />
             ))}
           </GridLayout>
-          <Loading />
           {loading && <Loading />}
         </div>
       </div>

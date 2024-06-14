@@ -2,7 +2,7 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 // Pages
-import { Home } from './pages';
+import { Home, Cart } from './pages';
 
 // Components
 import { Header, Footer } from './components';
@@ -18,6 +18,7 @@ const App = () => {
       >
         <Routes>
           <Route path='/' element={<Home />} />
+          <Route path='/cart' element={<Cart />} />
         </Routes>
       </div>
       <Footer />

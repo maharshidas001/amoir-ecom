@@ -17,9 +17,7 @@ const Header = () => {
           </Link>
 
           <div className='inline-flex'>
-            <p>Link 1</p>
-            <p>Link 2</p>
-            <p>Link 3</p>
+            <Link to='/cart'><p>Cart</p></Link>
           </div>
         </nav>
       </header>
