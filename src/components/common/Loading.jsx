@@ -1,11 +1,11 @@
 import React from 'react';
-import Logo from '../assets/Amoir Logo.svg';
+import Logo from '../../assets/Amoir Logo.svg';
 import { BarLoader } from 'react-spinners';
 
 const Loading = () => {
   return (
     <>
-      <section className='w-full h-full flex items-center justify-center absolute'>
+      <section className='w-full h-full flex items-center justify-center'>
         <div className='grid place-items-center'>
           <img src={Logo} alt="Amoir Logo" className='h-5 mb-3' />
           <BarLoader

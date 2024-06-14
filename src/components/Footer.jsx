@@ -2,7 +2,11 @@ import React from 'react';
 
 const Footer = () => {
   return (
-    <>Footer</>
+    <>
+      <footer className='bg-[#2b2b2b]'>
+        <p className='text-[whitesmoke] text-center py-3'>@2024 AMOIR | All rights reserved.</p>
+      </footer>
+    </>
   )
 }
 

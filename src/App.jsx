@@ -11,9 +11,15 @@ const App = () => {
   return (
     <>
       <Header />
-      <Routes>
-        <Route path='/' element={<Home />} />
-      </Routes>
+      <div
+        style={{
+          minHeight: 'calc(100vh - 96px)'
+        }}
+      >
+        <Routes>
+          <Route path='/' element={<Home />} />
+        </Routes>
+      </div>
       <Footer />
     </>
   )
