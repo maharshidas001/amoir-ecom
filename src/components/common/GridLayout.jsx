@@ -1,8 +1,17 @@
 import React from 'react';
 
-const GridLayout = () => {
+const GridLayout = ({ children }) => {
   return (
-    <>GridLayout</>
+    <>
+      <div
+        style={{
+          gridTemplateColumns: 'repeat(auto-fit, minmax(230px, 1fr))',
+        }}
+        className='w-full grid gap-3'
+      >
+        {children}
+      </div>
+    </>
   )
 }
 
