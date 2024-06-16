@@ -36,7 +36,9 @@ const Home = () => {
             ))}
           </GridLayout>
           {loading && <Loading />}
-          <Pagination />
+          <div className='w-full grid place-items-center'>
+            <Pagination />
+          </div>
         </div>
       </div>
     </>

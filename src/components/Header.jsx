@@ -17,7 +17,9 @@ const Header = () => {
           </Link>
 
           <div className='inline-flex'>
-            <Link to='/cart'><p>Cart</p></Link>
+            <Link to='/cart'>
+              <button className='w-20 bg-black text-white py-1 rounded text-[0.9rem]'>Cart (0)</button>
+            </Link>
           </div>
         </nav>
       </header>

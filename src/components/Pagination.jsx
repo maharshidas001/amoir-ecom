@@ -13,12 +13,13 @@ const Pagination = () => {
 
   return (
     <>
-      <div>
+      <div className='flex items-center gap-2 my-2'>
         <button
-          className='px-2 py-1 rounded bg-black text-white text-[0.9rem]'
+          className='px-5 py-2 rounded bg-black text-white text-[0.9rem]'
           onClick={() => handlePageChange(productPage += 1)} disabled={productPage === 1}>Prev</button>
+        <p className='text-[0.9rem] text-[grey]'>1 of 8</p>
         <button
-          className='px-2 py-1 rounded bg-black text-white text-[0.9rem]'
+          className='px-5 py-2 rounded bg-black text-white text-[0.9rem]'
           onClick={() => handlePageChange(productPage -= 1)}>Next</button>
       </div>
     </>
