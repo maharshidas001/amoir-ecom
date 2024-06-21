@@ -3,11 +3,13 @@ import Footer from './Footer';
 import GridLayout from "./common/GridLayout";
 import Card from "./common/Card";
 import Loading from "./common/Loading";
-import Pagination from "./Pagination";
+import Filter from "./Filter";
+import CartItem from "./CartItem";
 
 export {
   Header, Footer,
   GridLayout, Card,
   Loading,
-  Pagination
+  Filter,
+  CartItem
 }

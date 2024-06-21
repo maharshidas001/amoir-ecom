@@ -1,18 +1,18 @@
-import React, { useEffect } from 'react';
-import { GridLayout, Card, Pagination } from '../components';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Loading } from '../components';
+import { toast } from 'react-hot-toast';
 import { getAllProducts } from '../redux/slices/productSlice';
-import toast from 'react-hot-toast';
+import { GridLayout, Card, Filter, Loading } from '../components';
 
 const Home = () => {
-
   const dispatch = useDispatch();
-  const { products, loading, error, productPage } = useSelector(state => state.product);
+  const [toggleFilter, setToggleFilter] = useState(false);
 
   useEffect(() => {
-    dispatch(getAllProducts(productPage));
+    dispatch(getAllProducts());
   }, [dispatch]);
+
+  const { products, loading, error } = useSelector(state => state.product);
 
   useEffect(() => {
     if (error) {
@@ -21,28 +21,37 @@ const Home = () => {
   }, [error]);
 
   return (
-    <>
-      <div className='w-full flex items-center justify-center'>
-        <div className='w-full max-w-[1200px]'>
-          <GridLayout>
-            {(!loading && products.length !== 0) && products.map(prod => (
-              <Card
-                key={prod.id}
-                id={prod.id}
-                title={prod.title}
-                price={prod.price}
-                img={prod.image}
-              />
-            ))}
-          </GridLayout>
-          {loading && <Loading />}
-          <div className='w-full grid place-items-center'>
-            <Pagination />
-          </div>
-        </div>
+    <div className='w-full flex items-center justify-center'>
+      <div className='w-full max-w-[1200px] mx-2'>
+        {!loading && products.length > 0 && (
+          <button
+            className='w-[150px] py-1 rounded-full bg-black/20'
+            onClick={() => setToggleFilter(true)}
+          >
+            Filter
+          </button>
+        )}
+        {toggleFilter && <Filter setToggleFilter={setToggleFilter} />}
+        <GridLayout>
+          {!loading && products.length > 0 && products.map(prod => (
+            <Card
+              key={prod.id}
+              id={prod.id}
+              title={prod.title}
+              price={prod.price}
+              image={prod.image}
+            />
+          ))}
+        </GridLayout>
+        {loading && !error && <Loading />}
+        {!loading && error && (
+          <h2 className='font-medium text-xl text-gray-400'>
+            Something went wrong...
+          </h2>
+        )}
       </div>
-    </>
-  )
-}
+    </div>
+  );
+};
 
 export default Home;

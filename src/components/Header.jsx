@@ -1,10 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 // Assets
 import Logo from '../assets/Amoir Logo.svg';
 
 const Header = () => {
+
+  const { cartItems } = useSelector(state => state.cart);
+
   return (
     <>
       <header className='w-full flex items-center justify-center px-3'>
@@ -18,7 +22,7 @@ const Header = () => {
 
           <div className='inline-flex'>
             <Link to='/cart'>
-              <button className='w-20 bg-black text-white py-1 rounded text-[0.9rem]'>Cart (0)</button>
+              <button className='w-20 bg-black text-white py-1 rounded text-[0.9rem]'>Cart ({cartItems.length})</button>
             </Link>
           </div>
         </nav>
