@@ -12,7 +12,7 @@ const Home = () => {
     dispatch(getAllProducts());
   }, [dispatch]);
 
-  const { products, loading, error } = useSelector(state => state.product);
+  const { products, loading, error, isFiltered } = useSelector(state => state.product);
 
   useEffect(() => {
     if (error) {
@@ -23,14 +23,24 @@ const Home = () => {
   return (
     <div className='w-full flex items-center justify-center'>
       <div className='w-full max-w-[1200px] mx-2'>
-        {!loading && products.length > 0 && (
-          <button
-            className='w-[150px] py-1 rounded-full bg-black/20'
-            onClick={() => setToggleFilter(true)}
-          >
-            Filter
-          </button>
-        )}
+        <div className='flex gap-2'>
+          {!loading && products.length > 0 && (
+            <button
+              className='w-[150px] py-1 rounded-full bg-black/20'
+              onClick={() => setToggleFilter(true)}
+            >
+              Filter
+            </button>
+          )}
+          {isFiltered && (
+            <button
+              className='w-[150px] py-1 rounded-full bg-black/20'
+              onClick={() => dispatch(getAllProducts())}
+            >
+              See All
+            </button>
+          )}
+        </div>
         {toggleFilter && <Filter setToggleFilter={setToggleFilter} />}
         <GridLayout>
           {!loading && products.length > 0 && products.map(prod => (
