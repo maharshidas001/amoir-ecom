@@ -1,6 +1,6 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { Home, Cart, SingleProduct, Login } from './pages';
+import { Home, Cart, SingleProduct, Login, Signup } from './pages';
 import { Header, Footer } from './components';
 import { Toaster } from 'react-hot-toast';
 
@@ -17,6 +17,7 @@ const App = () => {
           <Route path='/cart' element={<Cart />} />
           <Route path='/product/:prodID' element={<SingleProduct />} />
           <Route path='/auth/login' element={<Login />} />
+          <Route path='/auth/register' element={<Signup />} />
         </Routes>
       </div>
       <Footer />
