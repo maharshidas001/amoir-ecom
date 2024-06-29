@@ -20,7 +20,10 @@ const Header = () => {
             />
           </Link>
 
-          <div className='inline-flex'>
+          <div className='flex items-center gap-2'>
+            <Link to='/auth/login'>
+              <button className='hover:underline'>Login</button>
+            </Link>
             <Link to='/cart'>
               <button className='w-20 bg-black text-white py-1 rounded text-[0.9rem]'>Cart ({cartItems.length})</button>
             </Link>
