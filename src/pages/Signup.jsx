@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Input, Button } from '../components';
 import toast from 'react-hot-toast';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import authService from '../utils/appwrite/appwriteAuth';
 import { useDispatch } from 'react-redux';
 import { signUp } from '../redux/slices/authSlice';
@@ -9,6 +9,7 @@ import { signUp } from '../redux/slices/authSlice';
 const Signup = () => {
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -21,6 +22,7 @@ const Signup = () => {
       .then(res => {
         if (res) {
           toast.success('Account created successfully!');
+          navigate('/');
           dispatch(signUp(res));
         };
       })

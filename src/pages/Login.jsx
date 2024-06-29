@@ -1,9 +1,15 @@
 import React, { useState } from 'react';
 import { Input, Button } from '../components';
 import toast from 'react-hot-toast';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import authService from '../utils/appwrite/appwriteAuth';
+import { useDispatch } from 'react-redux';
+import { login } from '../redux/slices/authSlice';
 
 const Login = () => {
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -11,15 +17,15 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // const { user, error } = await supabaseAuth.signIn(email, password);
-    // if (!error) {
-    //   // console.log(user);
-    //   toast.success('Logged in successfully!');
-    // }
-    // if (error) {
-    //   // console.log(error);
-    //   toast.error(error.message);
-    // }
+    authService.signIn({ email, password })
+      .then(res => {
+        if (res) {
+          toast.success('Logged in successfully!');
+          dispatch(login(res));
+          navigate('/');
+        };
+      })
+      .catch(err => toast.error(err.message));
   }
 
   return (

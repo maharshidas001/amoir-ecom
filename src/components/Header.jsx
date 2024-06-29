@@ -1,13 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-
-// Assets
+import { useSelector, useDispatch } from 'react-redux';
+import authSerivce from '../utils/appwrite/appwriteAuth';
+import { login, logout } from '../redux/slices/authSlice';
+import toast from 'react-hot-toast';
 import Logo from '../assets/Amoir Logo.svg';
 
 const Header = () => {
 
+  const dispatch = useDispatch();
   const { cartItems } = useSelector(state => state.cart);
+  const { user, status } = useSelector(state => state.auth);
+
+  const handleLogout = () => {
+    authSerivce.logout()
+      .catch(err => toast.error(err.message))
+      .finally(() => {
+        toast.success('Logged out succesfuly');
+        dispatch(logout());
+      });
+  };
 
   return (
     <>
@@ -21,9 +33,15 @@ const Header = () => {
           </Link>
 
           <div className='flex items-center gap-2'>
-            <Link to='/auth/login'>
-              <button className='hover:underline'>Login</button>
-            </Link>
+            {/* Checking if the user is loggedin or not */}
+            {user && status == true ? (
+              <button className='hover:underline' onClick={handleLogout}>Logout</button>
+            ) : (
+              <Link to='/auth/login'>
+                <button className='hover:underline'>Login</button>
+              </Link>
+            )}
+
             <Link to='/cart'>
               <button className='w-20 bg-black text-white py-1 rounded text-[0.9rem]'>Cart ({cartItems.length})</button>
             </Link>
